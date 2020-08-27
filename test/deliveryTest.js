@@ -50,4 +50,16 @@ deliveryTest('notRush in MA',t => {
     t.is(4,deliveryDate(anOrder,false))
 })
 
+deliveryTest('notRush in ME',t => {
+    const anOrder={
+        deliveryState:'ME',
+        placedOn:{
+            plusDays:(plusTime)=>{
+                return plusTime;
+            }
+        }
+    };
+    t.is(5,deliveryDate(anOrder,false))
+})
+
 
