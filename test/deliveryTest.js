@@ -62,4 +62,16 @@ deliveryTest('notRush in ME',t => {
     t.is(5,deliveryDate(anOrder,false))
 })
 
+deliveryTest('notRush in ELSE',t => {
+    const anOrder={
+        deliveryState:'ELSE',
+        placedOn:{
+            plusDays:(plusTime)=>{
+                return plusTime;
+            }
+        }
+    };
+    t.is(6,deliveryDate(anOrder,false))
+})
+
 
