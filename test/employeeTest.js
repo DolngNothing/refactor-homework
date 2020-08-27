@@ -1,7 +1,7 @@
 const { Employee } = require('../src/Employee');
-const deliveryTest = require('ava');
+const employeeTest = require('ava');
 
-deliveryTest('Rush in MA',t => {
+employeeTest('toString',t => {
     const employee =new Employee("jack","engineer");
     t.is("jack (engineer)",employee.toString())
 })
