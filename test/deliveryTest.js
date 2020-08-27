@@ -25,3 +25,16 @@ deliveryTest('Rush in NY',t => {
     };
     t.is(3,deliveryDate(anOrder,true))
 })
+
+deliveryTest('Rush in ELSE',t => {
+    const anOrder={
+        deliveryState:'ELSE',
+        placedOn:{
+            plusDays:(plusTime)=>{
+                return plusTime;
+            }
+        }
+    };
+    t.is(4,deliveryDate(anOrder,true))
+})
+
