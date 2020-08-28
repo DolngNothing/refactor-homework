@@ -1,15 +1,10 @@
 function voyageRisk(voyage) {
-  let result = 1;
-  if (voyage.length > 4) {
-    result += 2;
-  }
-  if (voyage.length > 8) {
-    result += voyage.length - 8;
-  }
-  if ([
+  let result = voyage.length>4?voyage.length>8?voyage.length-5:3:1;
+  const zone=[
     'china',
     'east-indies',
-  ].includes(voyage.zone)) {
+  ]
+  if (zone.includes(voyage.zone)) {
     result += 4;
   }
   return Math.max(result, 0);
