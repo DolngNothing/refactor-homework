@@ -20,6 +20,14 @@ rankTest('case 2 has china and length > 12 < 18, history<5 , hasChina', t => {
   t.is('B',rank)
 });
 
+rankTest('case 3 has china and length >18, history<5 , hasChina', t => {
+  const voyage = {
+    zone: 'china',
+    length: 19,
+  };
+  const rank = rating(voyage,history.slice(0,4))
+  t.is('B',rank)
+});
 
 const voyage = {
   zone: 'west-indies',
