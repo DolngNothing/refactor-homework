@@ -4,10 +4,7 @@ function voyageRisk(voyage) {
     'china',
     'east-indies',
   ]
-  if (zone.includes(voyage.zone)) {
-    result += 4;
-  }
-  return Math.max(result, 0);
+  return Math.max(zone.includes(voyage.zone) ? result+4:result, 0);
 }
 
 function hasChina(history) {
@@ -53,8 +50,4 @@ function rating(voyage, history) {
 judgeAorB = (vpf, vr, chr) => {
   return vpf * 3 > (vr + chr * 2) ? 'A' : 'B'
 }
-
-module.exports = {
-  rating
-};
-
+module.exports = {rating};
