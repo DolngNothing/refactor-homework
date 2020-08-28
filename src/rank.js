@@ -67,12 +67,7 @@ function rating (voyage, history) {
 }
 
 judgeAorB=(vpf,vr,chr)=>{
-  if (vpf * 3 > (vr + chr * 2)) {
-    return 'A';
-  }
-  else {
-    return 'B';
-  }
+  return vpf * 3 > (vr + chr * 2)? 'A':'B'
 }
 
 module.exports = {
