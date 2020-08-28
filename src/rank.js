@@ -1,4 +1,4 @@
-function voyageRisk (voyage) {
+function voyageRisk(voyage) {
   let result = 1;
   if (voyage.length > 4) {
     result += 2;
@@ -15,11 +15,11 @@ function voyageRisk (voyage) {
   return Math.max(result, 0);
 }
 
-function hasChina (history) {
+function hasChina(history) {
   return history.some(v => 'china' === v.zone);
 }
 
-function captainHistoryRisk (voyage, history) {
+function captainHistoryRisk(voyage, history) {
   let result = 1;
   if (history.length < 5) {
     result += 4;
@@ -31,43 +31,38 @@ function captainHistoryRisk (voyage, history) {
   return Math.max(result, 0);
 }
 
-function voyageProfitFactor (voyage, history) {
+function voyageProfitFactor(voyage, history) {
   let result = 2;
-  if (voyage.zone === 'china') {
-    result += 1;
-  }
-  if (voyage.zone === 'east-indies') {
+  if (voyage.zone === 'china' || voyage.zone === 'east-indies') {
     result += 1;
   }
   if (voyage.zone === 'china' && hasChina(history)) {
-    result += 3;
-    if (history.length > 10) {
-      result += 1;
-    }
-    if (voyage.length > 12) {
-      result += 1;
-    }
-    if (voyage.length > 18) {
-      result -= 1;
-    }
+    return caculateChinaVoyageProfit(history,voyage,result);
   }
   else {
-    if (history.length > 8) {
-      result += 1;
-    }
-    if (voyage.length > 14) {
-      result -= 1;
-    }
+    return caculateNotChinaVoyageProfit(history,voyage,result);
   }
+}
+
+caculateChinaVoyageProfit = (history,voyage,result) => {
+  result += 3;
+  result = (history.length > 10) ? result + 1 : result
+  result = voyage.length > 12 ? voyage.length > 18 ? result : result+1 : result;
   return result;
 }
 
-function rating (voyage, history) {
-  return judgeAorB(voyageProfitFactor(voyage, history),voyageRisk(voyage),captainHistoryRisk(voyage, history));
+caculateNotChinaVoyageProfit = (history,voyage,result) => {
+  result = (history.length > 8) ? result + 1 : result
+  result = voyage.length < 14 ? result : result-1
+  return result;
 }
 
-judgeAorB=(vpf,vr,chr)=>{
-  return vpf * 3 > (vr + chr * 2)? 'A':'B'
+function rating(voyage, history) {
+  return judgeAorB(voyageProfitFactor(voyage, history), voyageRisk(voyage), captainHistoryRisk(voyage, history));
+}
+
+judgeAorB = (vpf, vr, chr) => {
+  return vpf * 3 > (vr + chr * 2) ? 'A' : 'B'
 }
 
 module.exports = {
