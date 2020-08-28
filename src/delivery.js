@@ -19,15 +19,14 @@ rushDelivery=(anOrder)=>{
 notRushDelivery=(anOrder)=>{
   const nearCity = ['MA','CT','NY',];
   const farCity = ['ME','NH',];
-  const plusDay= 2;
   if (nearCity.includes(anOrder.deliveryState)) {
-    return anOrder.placedOn.plusDays(plusDay + 2);
+    return anOrder.placedOn.plusDays(4);
   }
   else if (farCity.includes(anOrder.deliveryState)) {
-    return anOrder.placedOn.plusDays(plusDay + 3);
+    return anOrder.placedOn.plusDays(5);
   }
   else {
-    return anOrder.placedOn.plusDays(plusDay + 4);
+    return anOrder.placedOn.plusDays(6);
   }
 }
 
