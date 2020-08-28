@@ -2,7 +2,7 @@ const { printOwing } = require('../src/print');
 const printTest = require('ava');
 
 printTest('print receipt', t => {
-	const expectResult = `***********************\n**** Customer Owes ****\n***********************\nname: james\namount: 20\ndate: 9/27/2020`;
+	const expectResult = `***********************\n**** Customer Owes ****\n***********************\nname: james\namount: 20\ndate: 2020/9/27`;
 	const invoice = {
 		borderSpacing: [
 			{ amount: 9 },
