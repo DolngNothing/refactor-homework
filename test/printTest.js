@@ -1,23 +1,15 @@
 const { printOwing } = require('../src/print');
+const printTest = require('ava');
 
-describe('print receipt', () => {
-	it('sss',
-		() => {
-		  
-			const expectResult = `***********************\n**** Customer Owes ****\n***********************\nname: james\namount: 20\ndate: 2019-06-06}`;
-
-			console.log = jest.fn();
-
-			const invoice={
-				borderSpacing:[
-					{amount:9},
-					{amount:11}
-				],
-				customer:'james'
-			}
-
-			printOwing(invoice);
-
-			//expect(console.log).toHaveBeenCalledWith(expectResult);
-		});
+printTest('print receipt', t => {
+	const expectResult = `***********************\n**** Customer Owes ****\n***********************\nname: james\namount: 20\ndate: 9/27/2020`;
+	const invoice = {
+		borderSpacing: [
+			{ amount: 9 },
+			{ amount: 11 }
+		],
+		customer: 'james'
+	}
+	let result = printOwing(invoice);
+	t.is(expectResult,result);
 });
